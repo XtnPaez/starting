@@ -33,12 +33,30 @@ Presioná Enter para aceptar la ubicación por defecto. Podés dejar la contrase
 
 #### Agregar la clave al agente SSH
 
+Dependiendo de tu sistema operativo, seguí estas instrucciones:
+
+##### En Linux/macOS
+
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_ed25519
+
+##### En Windows (PowerShell)
+
+    Start-Service ssh-agent
+    ssh-add $env:USERPROFILE\.ssh\id_ed25519
+
+##### En Windows (CMD)
+
+    net start ssh-agent
+    ssh-add %USERPROFILE%\.ssh\id_ed25519
 
 #### Copiar la clave pública
 
     cat ~/.ssh/id_ed25519.pub
+
+En Windows PowerShell podés usar también:
+
+    type $env:USERPROFILE\.ssh\id_ed25519.pub
 
 Copiá la salida completa de ese comando.
 
