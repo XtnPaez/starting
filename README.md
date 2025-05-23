@@ -1,67 +1,36 @@
 # Guía para conectar GitHub con SSH en Windows y clonar repositorios
 
-1. Instalar Git
+En git bash
 
-Descargar Git para Windows en https://git-scm.com/download/win
+```
+git config --global user.name "Tu Nombre"
+git config --global user.email "tuemail@ejemplo.com"
+```
 
-Ejecutar el instalador y aceptar opciones por defecto.
+Luego, para conectarse, vamos a sacar una key
 
-2. Abrir la consola
+```
+ssh-keygen -t ed25519 -C "tuemail@ejemplo.com"
+```
 
-Usar Git Bash para todos los comandos Git (buscar "Git Bash" en Windows).
+Copias la clave pública con
 
-También podés usar la terminal integrada de Visual Studio Code.
+```
+cat ~/.ssh/id_ed25519.pub
+```
 
-3. Generar clave SSH (una por PC)
+Y generas una nueva key en https://github.com/settings/keys
 
-En Git Bash:
+Ponerle el proxy a git
 
-Verificar si ya existe una clave:
-    ls ~/.ssh/id_rsa.pub
+git config --global http.proxy http://eproxy.cncps.gob.ar:8080
+git config --global https.proxy http://eproxy.cncps.gob.ar:8080
 
-Si no existe, crear nueva:
-    ssh-keygen -t ed25519 -C "tu_email@example.com"
+En Visual Studio Code, instalar Github Pul Request : abajo a la derecha conectarlo con el repo
 
-(Reemplazá por tu email de GitHub. Aceptá ubicación por defecto y frase de paso opcional)
+Clonar el repo
 
-Iniciar el agente SSH:
-    eval $(ssh-agent -s)
+```
+git clone https://github.com/XtnPaez/fiscalizar.git
+```
 
-Añadir la clave generada:
-    ssh-add ~/.ssh/id_ed25519
-
-Copiar la clave pública para GitHub:
-    cat ~/.ssh/id_ed25519.pub
-
-Ir a https://github.com > Settings > SSH and GPG keys > New SSH key
-
-Pegar la clave pública y guardar con un título identificador para la PC.
-
-4. Clonar repositorio usando SSH
-
-En Git Bash, navegar a la carpeta donde querés clonar el repo, por ejemplo:
-    cd C:/Users/TuUsuario/Proyectos
-
-Copiar URL SSH del repo en GitHub (botón Code > SSH), y clonar:
-    git clone git@github.com:usuario/repositorio.git
-
-5. Verificar a qué repositorio estás conectado
-
-Abrir la carpeta clonada en Visual Studio Code
-
-Abrir la terminal integrada (Terminal > New Terminal)
-
-Ejecutar:
-    git remote -v
-
-Verás la URL del repositorio remoto configurado.
-
-6. Uso en varias PCs
-
-Repetir los pasos para generar y agregar la clave SSH en cada PC.
-
-Clonar el repo en cada PC para tener la copia local.
-
-Usar Git Bash o la terminal de VS Code para trabajar con Git.
-
-Usar comandos estándar de Git (git add, git commit, git push) para subir cambios.
