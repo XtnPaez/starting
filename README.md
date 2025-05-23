@@ -30,7 +30,9 @@ git config --global http.proxy http://eproxy.cncps.gob.ar:8080
 git config --global https.proxy http://eproxy.cncps.gob.ar:8080
 ```
 
-## En Visual Studio Code, instalar Github Pul Request : abajo a la derecha conectarlo con el repo
+## En Visual Studio Code
+
+Instalar Github Pul Request : abajo a la derecha conectarlo con el repo
 
 ## Clonar el repo
 
